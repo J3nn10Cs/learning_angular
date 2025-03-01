@@ -1,0 +1,68 @@
+<app-title title="Control Flow" withShadow/>
+<section class="grid grid-cols-1 md:grid-cols-2 mt-4 gap-3">
+  <!-- ngInf @if -->
+  <div class="bg-white transition-all transition-discrete duration-700 ease-in-out hover:shadow-2xl hover:scale-3d rounded shadow p-10 flex justify-center items-center">
+    <div>
+      <h2 class="text-2xl font-bold mb-5">{{showContent() ? 'No ver la palabra clave ' : 'Ver la palabra clave '}}</h2>
+  
+      <button 
+        class="bg-blue-600 hover:bg-blue-700 px-4 w-full py-2 rounded-2xl text-white font-black hover:cursor-pointer"
+        (click)="toggleContent()"
+      >
+        Click me
+      </button>
+  
+      @if (showContent()) {
+        <p class="mt-5 text-center font-semibold text-2xl">Hola mundo</p>
+      }@else {
+        <p class="mt-5 text-center font-sans">******</p>
+      }
+    </div>
+  </div>
+  
+  <!-- @switch -->
+  <div class="bg-white transition-all transition-discrete duration-700 ease-in-out hover:shadow-2xl rounded shadow p-10 flex justify-center items-center">
+    <div>
+      <h2 class="text-4xl text-center font-bold">{{grade()}}</h2>
+      @switch (grade()) {
+        @case ('A') {
+          <p class="font-light text-2xl">Arriba de 90</p>
+        }
+        @case ('B') {
+          <p class="font-light text-2xl">Arriba de 80</p>
+        }
+        @case ('C') {
+          <p class="font-light text-2xl">Reprobado</p>
+        }
+      }
+    </div>
+  </div>
+
+  <!-- @for -->
+  <div class="bg-white transition-all transition-discrete duration-700 ease-in-out hover:shadow-2xl rounded shadow p-10 flex justify-center items-center">
+    <ul>
+      @for (framework of frameworks(); track frameworks; 
+        let i = $index, first = $first, last = $last, even = $even, odd = $odd, count = $count) {
+        <li
+          [class]="{
+            'bg-red-100' : even && !first && !last,
+            'bg-pink-300' : odd && !first && !last,
+            'bg-orange-200' : first || last,
+          }"
+          class="font-semibold px-3 py-2 rounded-2xl my-2 text-center"
+        > {{i+1}}/{{count}} {{framework}}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="bg-white transition-all transition-discrete duration-700 ease-in-out hover:shadow-2xl rounded shadow p-10 flex justify-center items-center">
+    <ul>
+      @for (framework of frameworks2(); track $index) {
+        <li class="font-semibold">{{framework}}</li>
+      }
+      @empty {
+        <li class="font-semibold">No hay framework agregados</li>
+      }
+    </ul>
+  </div>
+</section>
