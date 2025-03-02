@@ -44,6 +44,7 @@
       @for (framework of frameworks(); track frameworks; 
         let i = $index, first = $first, last = $last, even = $even, odd = $odd, count = $count) {
         <li
+          (keydown)="i"
           [class]="{
             'bg-red-100' : even && !first && !last,
             'bg-pink-300' : odd && !first && !last,
