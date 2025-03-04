@@ -1,21 +1,21 @@
 <app-title title="Usuarios listados"/>
 
-<ul>
+<ul class="grid grid-cols-3 gap-2  p-3">
   @for (user of userService.users(); track user.id) {
-    <li class="flex items-center mx-2 cursor-pointer">
-      <img 
-        [srcset]="user.avatar" 
-        [alt]="user.first_name"
-        class="rounded w-14"
-      >
-
-      <a 
-        [routerLink]="['/dashboard/user', user.id]" 
-        class="mx-5 hover:underline"
-      >
-        {{user.first_name}} {{user.last_name}}
-      </a>
-    </li>
+      <li class="mx-auto transition-all transition-discrete duration-500 ease-in-out hover:shadow-xl hover:shadow-purple-800 shadow bg-gradient-to-b from-blue-600 to-purple-600 rounded-e-2xl p-4 w-full">
+        <img 
+          [srcset]="user.avatar" 
+          [alt]="user.first_name"
+          class="rounded-xl w-20 mx-auto"
+        >
+        
+        <a 
+          [routerLink]="['/dashboard/user', user.id]" 
+          class="flex justify-center mt-1.5 font-bold"
+        >
+          {{user.first_name}} {{user.last_name}}
+        </a>
+      </li>
   }
   @empty {
     <p>Cargando</p>
